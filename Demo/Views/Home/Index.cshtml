@@ -1,0 +1,32 @@
+﻿@model MainPageViewModel
+@{
+
+    ViewData["Title"] = "Home Page";
+}
+
+@Html.ActionLink("Helper Page","index","helper",new {@class="btn btn-primary" })
+<a asp-controller="Tag" asp-action="index" class="btn btn-success" asp-route-name="amir" 
+   asp-route-age="12">Tag Page</a>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+
+   
+
+            @(await Component.InvokeAsync("Advertisement"))
+
+        </div>
+
+        <div class="col-md-8">
+            @foreach (var item in Model.News)
+            {
+                <p>@item.Title</p>
+                <p>@item.Description</p>
+            }
+        </div>
+        @*categires list*@
+        @Html.Partial("_CategoryList", Model.Categories)
+
+    </div>
+</div>

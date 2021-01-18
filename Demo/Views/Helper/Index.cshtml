@@ -1,0 +1,56 @@
+﻿@model Demo.Controllers.Student
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@using (Html.BeginForm("index", "helper", method: FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.LabelFor(a => a.Name) @Html.EditorFor(a => a.Name)
+
+    </div>
+    <div>
+        @Html.LabelFor(a => a.Password) @Html.PasswordFor(a => a.Password)
+
+    </div>
+    <div>
+        @Html.LabelFor(a => a.Average) @Html.EditorFor(a => a.Average)
+
+    </div>
+    <div>
+        @Html.CheckBoxFor(a => a.AcceptPolicy)<label>با شرایط بالا موافق</label>
+
+    </div>
+    <div>
+
+        @Html.DropDownList("Country", new List<SelectListItem> {
+new SelectListItem { Text="ایران",Value="ir"} ,
+new SelectListItem { Text="امریکا",Value="us"},
+new SelectListItem { Text="بریتانیا",Value="uk"}
+})<label>کشور</label>
+        @*@Html.ListBox("Country",new List<SelectListItem> {
+            new SelectListItem { Text="ایران",Value="ir"} ,
+            new SelectListItem { Text="امریکا",Value="us"},
+            new SelectListItem { Text="بریتانیا",Value="uk"}
+        })*@
+    </div>
+    <div>
+        @Html.RadioButton("Gender", "مرد", true, null)<label>مرد</label>
+        @Html.RadioButton("Gender", "زن", false, null)<label>زن</label>
+    </div>
+
+
+
+    <div>
+        @Html.LabelFor(a => a.Address) @Html.TextAreaFor(a => a.Address)
+
+    </div>
+    @*@Html.HiddenFor(a=>a.Id)*@
+    <input type="submit" value="ثبت نام">
+
+
+}
